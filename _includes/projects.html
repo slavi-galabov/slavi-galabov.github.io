@@ -1,0 +1,40 @@
+<section id="projects">
+    <div class="container blogpost">
+      <h1>Projects</h1>
+      <div class="panel panel-default">
+        <div class="panel-body" id="projects-list">
+            <h5>
+                <i class="fa fa-globe"></i>&nbsp;&nbsp;
+                    <strong>
+                        <a href="https://www.redlionchambers.co.uk/" target="_blank">Red Lion</a>
+                    </strong>
+                - Wordpress theme.
+		    </h5>
+            <h5>
+                <i class="fa fa-globe"></i>&nbsp;&nbsp;
+                    <strong>
+                        <a href="http://www.rudolfcar.com/" target="_blank">rudolf car</a>
+                    </strong>
+                - Wordpress + Woocommerce.
+		    </h5>
+        </div>
+      </div>      
+    </div>
+</section>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery.get("https://api.github.com/users/{{ site.github }}/repos", function(repos, status){
+            if(status  !== "success"){
+                $( ".panel-body" ).prepend("Oops! something went wrong.");
+            }
+           for (let i = 0; i < repos.length; i++){
+                let html = `<h5><i class="fa fa-github"></i>&nbsp;&nbsp;<a href="${repos[i].html_url}">${repos[i].name}</a> - ${repos[i].description}</h5>`;
+                if(repos[i].fork){
+                    html += `<small><em>Forked from <a href="${repos[i].homepage}" target="_blank">${repos[i].homepage}</a></em></small>`;
+                }
+                $( "#projects-list" ).prepend( html);
+            }
+        });
+    });
+</script>
