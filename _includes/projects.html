@@ -30,7 +30,7 @@
             }
            for (let i = 0; i < repos.length; i++){
                 let html = `<h5><i class="fa fa-github"></i>&nbsp;&nbsp;<a href="${repos[i].html_url}">${repos[i].name}</a> - ${repos[i].description}</h5>`;
-                if(repos[i].fork  !!repos[i].homepage){
+                if(repos[i].fork  repos[i].homepage != 'null'){
                     html += `<small><em>Forked from <a href="${repos[i].homepage}" target="_blank">${repos[i].homepage}</a></em></small>`;
                 }
                 $( "#projects-list" ).prepend( html);
